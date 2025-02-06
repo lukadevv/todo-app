@@ -14,7 +14,9 @@ A lightweight and fast task management application built with **Vite**, **Preact
 
 - **Vite** – Fast build tool  
 - **Preact** – Lightweight alternative to React  
-- **TypeScript** – Strongly typed JavaScript  
+- **TypeScript** – Strongly typed JavaScript
+- **Yup** - Schema validations
+- **MaterialUI** - UI components
 
 ## 📦 Installation
 
