@@ -35,4 +35,5 @@ export default defineConfig({
   server: {
     port: 4209,
   },
+  base: "/todo-app/"
 });
