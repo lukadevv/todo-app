@@ -2,6 +2,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { Autocomplete, Box, TextField } from "@mui/material";
 import { useTasks } from "../../hooks/task.hook";
 import { route } from "preact-router";
+import { appendUrlPath } from "../../utils/path";
 
 export function SearchBar() {
   const { tasks } = useTasks();
@@ -15,7 +16,7 @@ export function SearchBar() {
         minWidth: 0,
         [theme.breakpoints.down("sm")]: {
           visibility: "hidden",
-          width: 0
+          width: 0,
         },
       })}
       renderInput={(params: any) => (
@@ -44,9 +45,9 @@ export function SearchBar() {
         )?.project;
 
         if (projectId) {
-          route(`/projects/${projectId}`);
+          route(appendUrlPath(`/projects/${projectId}`));
         } else {
-          route(`/`);
+          route(appendUrlPath(`/`));
         }
       }}
     />
