@@ -1,10 +1,10 @@
 import { CoreProvider } from "./core.provider";
-import { HomePage } from "../pages/home/home";
+import { Routes } from "../routes/routes";
 
 export function App() {
   return (
     <CoreProvider>
-      <HomePage />
+      <Routes />
     </CoreProvider>
   );
 }
