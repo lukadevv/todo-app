@@ -1,4 +1,5 @@
 import { Link } from "@mui/material";
+import { appendUrlPath } from "../../utils/path";
 
 type LogoProps = {
   size: number;
@@ -6,9 +7,9 @@ type LogoProps = {
 
 export function Logo({ size }: LogoProps) {
   return (
-    <Link href={"/"} underline="none" rel={"noopener"}>
+    <Link href={appendUrlPath("/")} underline="none" rel={"noopener"}>
       <img
-        src={"/assets/logo.png"}
+        src={appendUrlPath("/assets/logo.png")}
         alt={"App logo"}
         width={size}
         height={size}

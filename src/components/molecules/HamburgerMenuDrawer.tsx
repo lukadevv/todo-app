@@ -15,6 +15,7 @@ import {
 import { Logo } from "../atoms/Logo";
 import { useTasks } from "../../hooks/task.hook";
 import { useMemo } from "preact/hooks";
+import { appendUrlPath } from "../../utils/path";
 
 type HamburgerMenuDrawerProps = {
   open: boolean;
@@ -88,7 +89,11 @@ function Dashboard({ close }: { close: () => void }) {
         </ListSubheader>
       }
     >
-      <MenuItem component={Link} href="/" onClick={() => close()}>
+      <MenuItem
+        component={Link}
+        href={appendUrlPath("/")}
+        onClick={() => close()}
+      >
         <ListItemAvatar
           sx={{
             display: "flex",
@@ -147,7 +152,7 @@ function MyProjects({ close }: { close: () => void }) {
         {projects.map((project) => (
           <MenuItem
             component={Link}
-            href={`/projects/${project}`}
+            href={appendUrlPath(`/projects/${project}`)}
             onClick={() => close()}
           >
             <ListItemAvatar
@@ -204,7 +209,7 @@ function TrashButton({ close }: { close: () => void }) {
     >
       <MenuItem
         component={Link}
-        href="/deleted-tasks"
+        href={appendUrlPath("/deleted-tasks")}
         onClick={() => close()}
         disabled={size === 0}
       >
