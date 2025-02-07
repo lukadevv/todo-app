@@ -10,7 +10,7 @@ export function ProjectStats({ project }: { project: string }) {
     const total = tasks.length;
     const completed = tasks.filter((each) => each.done).length;
 
-    if (total < 1) return 0;
+    if (total < 1 || completed < 1) return 0;
     return Math.min(100, Math.max(1, Math.round((completed / total) * 100)));
   }, [rawTasks]);
 
