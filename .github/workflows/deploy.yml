@@ -5,6 +5,10 @@ on:
     branches:
       - master
 
+env:
+  VITE_GITHUB_URL: https://github.com/lukadevv
+  VITE_TASK_KEY: tasks
+
 jobs:
   build:
     name: Build
