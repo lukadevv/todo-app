@@ -2,7 +2,6 @@ import {
   Autocomplete,
   Box,
   Button,
-  ButtonGroup,
   Card,
   CardContent,
   TextField,
@@ -105,7 +104,7 @@ export function AddTask() {
               sx={{
                 height: "57px",
                 border: "1px solid gray",
-                width: "25%"
+                width: "25%",
               }}
             >
               <Add />
