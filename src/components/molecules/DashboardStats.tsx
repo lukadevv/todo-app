@@ -9,7 +9,7 @@ export function DashboardStats() {
     const total = tasks.length;
     const completed = tasks.filter((each) => each.done).length;
 
-    if (total === 0) return 0;
+    if (total < 1) return 0;
     return Math.min(100, Math.max(1, Math.round((completed / total) * 100)));
   }, [tasks]);
 
@@ -32,7 +32,7 @@ export function DashboardStats() {
 
     const total = projects.length;
 
-    if (total === 0) return 0;
+    if (total < 1) return 0;
     return Math.min(100, Math.max(1, Math.round((completed / total) * 100)));
   }, [tasks, projects]);
 
