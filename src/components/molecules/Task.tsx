@@ -1,6 +1,7 @@
 import {
   Box,
   Checkbox,
+  Link,
   ListItem,
   ListItemAvatar,
   ListItemButton,
@@ -9,7 +10,7 @@ import {
 } from "@mui/material";
 import { TaskEntityType } from "../../models/task.model";
 import { changeTask } from "../../services/tasks/change";
-import { DateRange, Delete } from "@mui/icons-material";
+import { DateRange, Delete, Flag } from "@mui/icons-material";
 
 export function Task({
   description,
@@ -17,7 +18,10 @@ export function Task({
   deleted,
   createdAt,
   priority,
-}: TaskEntityType) {
+  href,
+}: TaskEntityType & {
+  href?: string;
+}) {
   return (
     <ListItem
       divider
@@ -47,17 +51,28 @@ export function Task({
         }}
       >
         <Box display={"flex"} flexDirection={"column"}>
-          <Typography mb={2}>{description}</Typography>
+          <Typography
+            component={href ? Link : "p"}
+            mb={2}
+            href={href}
+            color="inherit"
+            sx={{
+              textDecoration: "inherit",
+            }}
+          >
+            {description}
+          </Typography>
           <Box display={"flex"} gap={1.6} alignItems={"center"}>
             <Box display={"flex"} gap={0.5}>
-              <DateRange color="secondary" opacity={0.8} />
-              <Typography color="secondary" fontWeight={"bold"}>
+              <DateRange color="primary" opacity={0.8} />
+              <Typography color="primary" fontWeight={"bold"}>
                 {`${createdAt.toLocaleDateString()} ${createdAt.toLocaleTimeString()}`}
               </Typography>
             </Box>
             <Box display={"flex"} gap={0.3}>
+              <Flag color="disabled" />
               <Typography color="textDisabled">Priority: </Typography>
-              <Typography color="secondary" fontWeight={"bold"}>
+              <Typography color="primary" fontWeight={"bold"}>
                 {priority.toUpperCase()}
               </Typography>
             </Box>

@@ -1,7 +1,16 @@
-import { Box, Card, CardContent, List, Typography } from "@mui/material";
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Box,
+  List,
+  Typography,
+} from "@mui/material";
 import { useTasks } from "../../hooks/task.hook";
-import { useMemo } from "preact/hooks";
-import { Task } from "../molecules/Task";
+import { useMemo, useState } from "preact/hooks";
+import { Task as TaskComponent } from "../molecules/Task";
+import { ExpandMore, ListAlt } from "@mui/icons-material";
+import { appendUrlPath } from "../../utils/path";
 
 export function LatestTasks() {
   const { tasks: rawTasks } = useTasks();
@@ -13,20 +22,54 @@ export function LatestTasks() {
     [rawTasks]
   );
 
+  const [open, setOpen] = useState<boolean>(true);
+
   return (
-    <Box component={"section"}>
-      <Card>
-        <CardContent>
-          <Typography variant="h5">{`Latest tasks (${tasks.length})`}</Typography>
-          <Box mt={1}>
-            <List>
-              {tasks.map((each) => (
-                <Task key={each.createdAt} {...each} />
-              ))}
-            </List>
-          </Box>
-        </CardContent>
-      </Card>
-    </Box>
+    <Accordion
+      sx={{
+        borderRadius: "15px",
+        "&.MuiAccordion-root": {
+          position: "inherit",
+        },
+        border: "1px solid gray"
+      }}
+      expanded={open}
+      onChange={(_, value) => setOpen(value)}
+    >
+      <AccordionSummary
+        expandIcon={<ExpandMore />}
+        aria-controls="latest-task-content"
+        sx={{
+          ".MuiAccordionSummary-content": {
+            width: "100%",
+          },
+        }}
+      >
+        <Typography
+          variant="h5"
+          m={1}
+          display={"flex"}
+          justifyContent={"center"}
+          alignItems={"center"}
+          gap={2}
+        >
+          <ListAlt />
+          {`Latest tasks (${tasks.length})`}
+        </Typography>
+      </AccordionSummary>
+      <AccordionDetails>
+        <Box mt={1}>
+          <List>
+            {tasks.map((each) => (
+              <TaskComponent
+                key={each.createdAt}
+                {...each}
+                href={appendUrlPath(`/projects/${each.project}`)}
+              />
+            ))}
+          </List>
+        </Box>
+      </AccordionDetails>
+    </Accordion>
   );
 }

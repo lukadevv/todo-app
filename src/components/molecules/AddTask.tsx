@@ -6,10 +6,13 @@ import {
   Card,
   CardContent,
   TextField,
+  Typography,
 } from "@mui/material";
 import { useCallback, useMemo, useState } from "preact/hooks";
 import { TaskEntityType, TaskPriority } from "../../models/task.model";
 import { useTasks } from "../../hooks/task.hook";
+import { PriorityButton } from "../atoms/PriorityButton";
+import { Add } from "@mui/icons-material";
 
 export function AddTask() {
   const [description, setDescription] = useState<string>("");
@@ -40,13 +43,18 @@ export function AddTask() {
   );
 
   return (
-    <Card>
+    <Card
+      sx={{
+        border: "1px solid gray",
+      }}
+    >
       <CardContent>
+        <Typography variant="h5" mb={3}>
+          Add task
+        </Typography>
         <Box
           width={"100%"}
           display={"flex"}
-          justifyContent={"center"}
-          alignItems={"center"}
           flexDirection={"column"}
           gap={"5px"}
           component={"form"}
@@ -87,46 +95,25 @@ export function AddTask() {
               },
             })}
           >
-            <PriorityButton state={priority} setPriority={setPriority} />
+            <PriorityButton value={priority} setValue={setPriority} />
             <SelectProjects state={project} setState={setProject} />
+            <Button
+              fullWidth
+              variant="contained"
+              type={"submit"}
+              disabled={!isValid}
+              sx={{
+                height: "57px",
+                border: "1px solid gray",
+                width: "25%"
+              }}
+            >
+              <Add />
+            </Button>
           </Box>
-
-          <Button
-            fullWidth
-            variant="contained"
-            type={"submit"}
-            disabled={!isValid}
-          >
-            Add task
-          </Button>
         </Box>
       </CardContent>
     </Card>
-  );
-}
-
-function PriorityButton({
-  state,
-  setPriority,
-}: {
-  state: TaskPriority;
-  setPriority: React.Dispatch<React.SetStateAction<TaskPriority>>;
-}) {
-  return (
-    <ButtonGroup fullWidth variant="outlined">
-      <Button onClick={() => setPriority("LOW")} disabled={state === "LOW"}>
-        {"LOW" as TaskPriority}
-      </Button>
-      <Button
-        onClick={() => setPriority("MEDIUM")}
-        disabled={state === "MEDIUM"}
-      >
-        {"MEDIUM" as TaskPriority}
-      </Button>
-      <Button onClick={() => setPriority("HIGH")} disabled={state === "HIGH"}>
-        {"HIGH" as TaskPriority}
-      </Button>
-    </ButtonGroup>
   );
 }
 
