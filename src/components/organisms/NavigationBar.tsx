@@ -56,5 +56,5 @@ function Hamburger({ open }: { open: () => void }) {
 }
 
 function NavLogo() {
-  return <Logo size={70} />;
+  return <Logo size={50} />;
 }

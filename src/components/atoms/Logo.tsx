@@ -13,7 +13,7 @@ export function Logo({ size }: LogoProps) {
         alt={"App logo"}
         width={size}
         height={size}
-        style={"object-fit: contain; user-select: none"}
+        style={"object-fit: contain; user-select: none; margin-top: 7px;"}
       />
     </Link>
   );

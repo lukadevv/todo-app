@@ -16,12 +16,12 @@ export default defineConfig({
         short_name: "todo-app",
         icons: [
           {
-            src: "/todo-app/assets/metadata/android-chrome-192x192.png",
+            src: "/assets/metadata/android-chrome-192x192.png",
             sizes: "192x192",
             type: "image/png",
           },
           {
-            src: "/todo-app/assets/metadata/android-chrome-512x512.png",
+            src: "/assets/metadata/android-chrome-512x512.png",
             sizes: "512x512",
             type: "image/png",
           },
@@ -35,5 +35,4 @@ export default defineConfig({
   server: {
     port: 4209,
   },
-  base: "/todo-app",
 });
